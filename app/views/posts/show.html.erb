@@ -1,20 +1,4 @@
-
-Create a posts#show page to display the following:
-
-The title, categories, and content of the post.
-All of the comments associated with the post.
-A list of all the unique users who have commented on the 
-user's name should only show up once in this section, 
-even if they've commented multiple times.
-A form to add a new comment. The form should have a 
-drop-down menu to select a user (we'll change this in 
-future lessons to automatically associate the comment 
-with a logged-in user). We should also be able to create
- a new user here and automatically associate it with the 
- t. To associate a new comment with a post, you'll have 
- to use a [hidden field]
-
- <h1><%= @post.title %></h1>
+<h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
 <em>Category</em>
 <ul><% @post.categories.each do |category| %>
