@@ -6,7 +6,7 @@
   <strong><%= f.label :categories %></strong><br>
   Choose a category:<br>
   <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
-  Or create a new category:<br>
+  Create a new category:<br>
   <%# f.fields_for :categories, @post.categories.build do |categories_fields| %>
    <%= f.fields_for :categories do |categories_fields| %>
     <%= categories_fields.text_field :name %>

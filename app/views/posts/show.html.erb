@@ -1,13 +1,13 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
-<em>Category</em>
+<strong>Category</strong>
 <ul><% @post.categories.each do |category| %>
   <li><%= category.name %></li>
   <% end %>
 </ul>
 <br>
 
-<em>Comments</em>
+<strong>Comments</strong>
 <% @post.comments.each do |comment| %>
   <p><%= comment.user.username %> says: <%= comment.content %></p>
 <% end %>
