@@ -22,7 +22,7 @@ end
 
 # self.categories << category  
   # establishes a new relation between a post and a category
-  # ineffiecient
+  # ineffiecient! Will return all the categories
 
 
 # from has has_many video:
