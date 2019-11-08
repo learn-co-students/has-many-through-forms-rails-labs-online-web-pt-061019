@@ -1,6 +1,14 @@
+require 'pry'
+
 class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
+    @users = []
+    @post.comments.each do |comment|
+      @users << comment.user 
+    end
+    @users = @users.uniq
   end
 
   def index
@@ -12,7 +20,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.create(post_params)
+    if params["post"]["category_ids"].last != "" 
+      post = Post.create(post_params)
+    else
+      post = Post.create(params.require(:post).permit(:title, :content, categories_attributes: [:name]))
+    end
     redirect_to post
   end
 
