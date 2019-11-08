@@ -7,9 +7,11 @@ class Post < ActiveRecord::Base
   # accepts_nested_attributes_for :categories
 
   def categories_attributes=(category_attributes)
-    category_attributes.values.each do |cat_attr|
-      category = Category.find_or_create_by(cat_attr)
-      self.categories << category
-    end
+      category_attributes.values.each do |cat_attr|
+        unless cat_attr["name"] == ""
+        category = Category.find_or_create_by(cat_attr)
+        self.categories << category
+        end
+      end
   end
 end
