@@ -11,7 +11,7 @@ Categories: <br>
 Comments: <br>
 <ul>
     <% @post.comments.each do |comment|%>
-    <li><%=comment.content%></li>
+    <li><%=comment.user.username%> says: <%=comment.content%></li>
     <%end%>
 </ul>
 <br>
@@ -22,17 +22,16 @@ Users that Commented:<br>
     <%end%>
 </ul>
 
-<%=form_for @post.comments do |f|%>
+<%=form_for @post.comments.build do |f|%>
 <%= f.hidden_field :post_id, value: @post.id %>
 
-<%= f.collection_select :user, User.all, :id, :username%>
-  <% end %>
+<%= f.collection_select :user_id, User.all, :id, :username%>
   
-  <%= f.fields_for :user, post.user.build do |user_fields| %>
+  <%= f.fields_for :user, @post.users.build do |user_fields| %>
     <%= user_fields.label :username%>
     <%= user_fields.text_field :username %>
   <% end %>
   <%= f.label :content, "Comment" %><br>
-    <%= f.text_area :content %>
+    <%= f.text_area :content %><br>
   <%= f.submit %>
 <% end %>
