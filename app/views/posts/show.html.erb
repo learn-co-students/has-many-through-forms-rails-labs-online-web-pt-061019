@@ -1,13 +1,21 @@
 <h1><%= @post.title %></h1>
-<strong>Category/ies:</strong> <%= @post.categories.each do |c| %>
- <%= c.name %>
-<% end %>
 
 <p><%= @post.content %></p>
+
+<strong>Category/ies:</strong><br>
+<%= @post.categories.each do |c| %>
+  <%= c.name %>
+<% end %>
 
 <hr>
 
 <h3>Comments</h3>
+
+<%= @post.comments.each do |comment| %>
+  <p>
+    <%= comment.user.username %> says: <%= comment.content %>
+  </p>
+<% end %>
 
 <strong>Users who have commented on your post:</strong>
 <ul>
@@ -18,19 +26,11 @@
     <% end %>
 </ul>
 
-<%= @post.comments.each do |comment| %>
-  <p>
-    <%= comment.user.username %> says:<br>
-    <%= comment.content %>
-  </p>
-<% end %>
-
-<h3>Leave a Comment</h3>
 <%= form_for @post.comments.build do |c| %>
   <%= c.hidden_field :post_id %>
   
   <p>
-    <%= c.collection_select :user_id, User.all, :id, :username, include_blank: 'Select your username' %><br>
+    <%= c.collection_select :user_id, User.all, :id, :username, include_blank: 'New User' %><br>
   <p>
 
   <p>

@@ -3,12 +3,13 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :post_categories
   has_many :comments
   has_many :users, through: :comments
-  accepts_nested_attributes_for :categories
 
   def categories_attributes=(category_attributes)
-    category_attributes.values.each do |c|
-      category = Category.find_or_create_by(c)
-      self.categories << category
+    category_attributes.values.each do |category_attr|
+      if !category_attr[:name].empty? 
+        category = Category.find_or_create_by(category_attr)
+        self.post_categories.build(:category => category)
+      end
     end
   end
 
