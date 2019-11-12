@@ -28,6 +28,9 @@
     <%= user.text_field :username %>
   <% end %>
   <br>
+ <%=  f.hidden_field :post_id, value: @post.id%>
+  <!--
   <input type="hidden" name="comment[post_id]" value="<%= @post.id %>">
+  -->
   <%= f.submit %>
 <% end %>
