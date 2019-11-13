@@ -1,1 +1,28 @@
+<h1> <%= @post.title %> </h1> 
+    <%= @post.content %>
+    <br> 
+
+    <h2> Categories </h2> 
+    <% @post.categories.each do |category| %> 
+        <ul> 
+            <li> <%= category.name %> </li> 
+        </ul> 
+    <% end %> 
+    <br> 
+
+    <h2> User - Comments </h2> 
+    <% @post.users.uniq.each do |user| %> 
+        <ul> 
+            <li> <%= link_to user.username, user_path(user) %> </li> 
+        </ul> 
+    <% end %> 
+
+    <% @post.comments.each do |comment| %> 
+        <ul> 
+            <li> <%= "#{comment.content}" %> </li> 
+        </ul> 
+    <% end %> 
+
+
+
 
