@@ -9,21 +9,33 @@
 <% end  %>
 
 <h2>Comments</h2>
-<%= @post.comments.each do |c| %>
-  <%= c.content %>
-<% end  %>
+<ul>
+  <%= @post.comments.each do |c| %>
+    <li><%= c.user.username %> says: <%= c.content %></li>
+  <% end  %>
+</ul>
+
 
 <h2>Users who Commented</h2>
-<%= @post.comments.each do |u| %>
-  <%= u %>
-<% end  %>
+<%= @post.comments.each do |c| %>
+  <%= link_to c.user.username, user_path(c) %>
+<% end %>
 
 <h3>New Comment</h3>
 
 <%= form_for @post.comments.build do |f|%>
   <%= f.hidden_field :post_id, value: @post.id %>
 
-  <%= f.label :content %>
-  <%= f.text_field :content %>
+  <%= f.collection_select :user_id, User.all, :id, :username %>
+  <%= f.fields_for :user, @post.users.build do |user_fields| %>
 
+    <%= user_fields.label :username %>
+    <%= user_fields.text_area :username %>
+
+  <% end %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+
+  <%= f.submit %>
 <% end %>
