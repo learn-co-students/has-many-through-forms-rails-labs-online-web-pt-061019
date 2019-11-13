@@ -30,7 +30,7 @@
   <%= f.fields_for :user, @post.users.build do |user_fields| %>
 
     <%= user_fields.label :username %>
-    <%= user_fields.text_area :username %>
+    <%= user_fields.text_field :username %>
 
   <% end %>
 
