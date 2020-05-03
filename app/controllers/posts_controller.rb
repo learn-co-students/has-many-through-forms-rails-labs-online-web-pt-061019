@@ -9,9 +9,14 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    # 2.times do
+      @post.categories.build
+    # end
+    # raise @post.inspect
   end
 
   def create
+    # binding.pry
     post = Post.create(post_params)
     redirect_to post
   end
